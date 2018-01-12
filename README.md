@@ -4,5 +4,5 @@ Ali Rahimi and Ben Recht, in their works, have shown that random kernel function
 
 ## Result
 
-![result]['acc.jpg']
+![result]('/acc.jpg')
 
