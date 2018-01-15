@@ -34,9 +34,16 @@ def random_cnn(x):
 
     return out
 
+def linear_map(x):
+    inp=tf.reshape(x, (-1, img_size*img_size))
+    out = l.fully_connected(inp, final_layer, trainable= False, activation_fn=None)
+
+    return out
+
+
 
 def train(x, y, loss_fn=tf.losses.hinge_loss):
-    phi = random_cnn(x)
+    phi = linear_map(x)
 
     # get size of phi
     size = tf.shape(x, 'phi_shape')[1]
@@ -44,7 +51,6 @@ def train(x, y, loss_fn=tf.losses.hinge_loss):
         alpha = tf.Variable(tf.random_uniform((final_layer,10)), 
             trainable=True, name='alpha')
         yhat = tf.matmul(phi, alpha)
-        # yhat = phi
 
         correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(yhat,1))
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
@@ -82,7 +88,7 @@ with tf.Session() as sess:
             print("Iteration %d, loss %f"%(t,loss))
             acc = sess.run(op_acc, feed_dict={x: batch_xs, y: batch_ys})
             print("accuracy: %f"%acc)
-            print(np.linalg.norm(alpha, 2))
+            print("2-norm of alpha: %f"%np.linalg.norm(alpha, 2))
             print("\n")
             accuracies.append(acc*100)
 
