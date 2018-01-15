@@ -4,8 +4,8 @@ Ali Rahimi and Ben Recht, in their works [(1)](https://www.google.com/url?sa=t&r
 
 ## Result for random 2-layer convolution networks
 
-![result][/acc_nonlinear.jpg]
+![result_nonlinear][acc_nonlinear.jpg]
 
 ## Result for random linear transform
 
-![result][/acc_linear.jpg]
+![result_linear][acc_linear.jpg]
